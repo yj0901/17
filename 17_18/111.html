@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+<style>
+            td {
+               
+                border: 1px solid #CCCCCC;
+            }
+            tr {
+                text-align: center;
+            }
+            p{
+              word-break:break-all;
+               word-wrap:break-word;
+            }
+        </style>
+</head>
+
+<body>  
+<td></td>      
+ </body>
+
+    <script>
+var a=[];	
+	for (var i = 1; i <=100; i++) {
+	if(i%3==0){
+	  a[i-1]="PA";
+ } else if(i%10==3||(i-i%10)/10==3){
+  a[i-1]="PA";
+ }
+ else{
+  a[i-1]=i;
+ }
+} 
+console.log();
+ document.write("<p>"+ a+"</p>");
+
+
+
+
+var arr = new Array();          
+       for(var i=0;i<=8;i++){           
+          arr[i]=new Array(i);     
+          for(var j=0;j<=i;j++){ 
+             var ii=i+1;
+              var jj=j+1;
+             arr[i][j]=ii+"*"+jj +"="+ ii*jj;
+         
+       }
+}
+  console.log(arr);
+
+document.write("<table>");
+
+for(var i=0;i<arr.length;i++){
+	document.write("<tr>");
+    for(var j=0;j<arr[i].length;j++){
+ document.write("<td>"+ arr[i][j]+"</td>");
+    }
+    document.write("</tr>");
+    document.write("<br/>");  
+}
+document.write("</table>");
+
+
+
+
+
+    </script>
+
+</body>
+</html>
