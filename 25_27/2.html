@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p id='txt'></p>
+<script type="text/javascript">
+	var txt=document.querySelector('#txt');
+
+setInterval(function(){
+var a=new Date();
+var year=a.getFullYear();
+var month=a.getMonth()+1;
+var day=a.getDate();
+var hour=a.getHours();
+var minute=a.getMinutes();
+var seconed=a.getSeconds();
+function q(num) {
+	if(num<10){
+		var num='0'+num;
+return num;
+	}else{
+		return num;
+	}
+}
+var week=a.getDay();
+function w(date) {
+
+	switch(a.getDay()){
+case 0:
+return '天';
+case 1:
+return '一';
+case 2:
+return '二';
+case 3:
+return '三';
+case 4:
+return '四';
+case 5:
+return '五';
+case 6:
+return '六';
+
+	}
+
+}
+function t(year,month,day,week,hour,minute,seconed) {
+
+	txt.innerText=year+'年'+q(month)+'月'+q(day)+'日'+'星期'+w(week)+q(hour)+'时'+q(minute)+'分'+q(seconed)+'秒';
+}
+t(year,month,day,week,hour,minute,seconed);
+},1000)
+
+
+</script>
+</body>
+</html>
