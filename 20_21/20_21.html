@@ -1,172 +1,170 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">    
-    <title>IFE ECMAScript</title>
-    <style>
-        .palette {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .palette li {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #000;
-            cursor: pointer;
-        }
-    </style>
+    <title></title>
 </head>
-<body>            
-    <ul class="palette">
-        <li style="background-color:crimson"></li>
-        <li style="background-color:bisque"></li>
-        <li style="background-color:blueviolet"></li>
-        <li style="background-color:coral"></li>
-        <li style="background-color:chartreuse"></li>
-        <li style="background-color:darkolivegreen"></li>
-        <li style="background-color:cyan"></li>
-        <li style="background-color:#194738"></li>        
-    </ul>
-
-    <p class="color-picker"></p>
-<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
-<button id="fade-btn">淡出</button>
-<div id="fade1-obj" style="width:300px;height:300px;background:#000"></div>
-<button id="fade1-btn">淡出</button>
-    <script>
-    //settimeout
-
-        var fade=document.querySelector('#fade-obj');
-        var btn=document.querySelector('#fade-btn');
-   var o=1;
-     function chu() {       
- if(o>0){
-    o-=0.1;
-    fade.style.opacity=o;     
-setTimeout("chu()",100);
-}else{clearTimeot(t);
-}
- } 
-    function ru() {      
- if(o<1){
-    fade.style.opacity=o; 
-     o+=0.1;
-setTimeout("ru()",100);
-}else{
-clearTimeot(t);
-}
-}     
-btn.onclick=function(){
-if(btn.innerText=='淡出'){
-chu();
-btn.innerText="淡入";
-}else if(btn.innerText=='淡入'){
-     var o=0.1;
-    ru();
-    btn.innerText="淡出";}
-        }
-
-
-
-//setinterval
-         var fade1=document.querySelector('#fade1-obj');
-        var btn1=document.querySelector('#fade1-btn');
-  function chu1() {       
- if(o>0){
-    o-=0.1;
-    fade1.style.opacity=o;     
-}else{
-   clearInterval(t);
-}
- } 
-    function ru1() {      
- if(o<=1){
-    fade1.style.opacity=o; 
-     o+=0.1;
-}else{
-clearInterval(t1);
-}
-}     
-   btn1.onclick=function(){
-if(btn1.innerText=='淡出'){
-t=setInterval('chu1()',100);
-
-btn1.innerText="淡入";
-}else if(btn1.innerText=='淡入'){
-     var o=0.1;
-    t1=setInterval('ru1()',100);
-    btn1.innerText="淡出";}
-        }
- // var EventUtil = {
- //     addHandler: function (element, type, handler) {
- //        if (element.addEventListener) {
- //             element.addEventListener(type, handler, false);
- //        } else if (element.attachEvent) {
- //             element.attachEvent(on + type, handler);
- //         } else {
- //            element['on' + type] = handler;
- //        }
- //     },
-
- //     getEvent: function (event) {
- //         return event ? event : window.event;
- 
- //     },
- 
- //    getTarget: function (event) {
- //         return event.target || event.srcElement;
- //     },
- 
- //     preventDefault: function (event) {
- //         if (event.preventDefault) {
- //             event.preventDefault();
- //         } else {
- //            event.returnValue = false;
- //        }
- //     },
- 
- //     stopPropagation: function (event) {
- //         if (event.stopPropagation) {
- //             event.stopPropagation();
- //        } else {
- //            event.cancelBubble = true;
- //         }
- //     },
- 
- //     removeHandler: function (element, type, handler) {
- //        if (element.removeEventListener) {
- //             element.removeEventListener(type, handler, false);
- //         } else if (element.detachEvent) {
- //             element.detachEvent(on + type, handler);
- //        } else {
- //             element['on' + type] = null;
- //         }
- //     }
-    
- // };
-// var list = document.querySelectorAll("li");
-//         for (var i = i = 0, len = list.length; i < len; i++) {
-//             list[i].onclick = function(e) {
-//                 var t = e.target;
-//                 var c = t.style.backgroundColor;
-//                 var p = document.getElementsByClassName("color-picker")[0]
-//                 p.innerHTML = c;
-//                 p.style.color = c;
-
-//             }
-//         }
-  
-  var ul = document.querySelector(".palette");
-  ul.onclick = function(e) {
-                var t = e.target;
-                var c = t.style.backgroundColor;
-                var p = document.getElementsByClassName("color-picker")[0]
-                p.innerHTML = c;
-                p.style.color = c;
-
+<body>
+<div>
+    <label>Number A:<input id="radio-a" type="radio" name="math-obj" value="a"></label><input id="num-a" type="text">
+    <label>Number B:<input id="radio-b" type="radio" name="math-obj" value="b"></label><input id="num-b" type="text">
+</div>
+<div id='play'>
+    <button>判断当前选中的输入框输入内容是否为数字</button>
+    <button>把 A 四舍五入为 B 个小数位数的数字</button>
+    <button>当前选中数字的绝对值</button>
+    <button>对当前选中的数字进行上舍入</button>
+    <button>对当前选中的数字进行下舍入</button>
+    <button>把当前选中的数字四舍五入为最接近的整数</button>
+    <button>返回 A 和 B 中的最高值</button>
+    <button>返回 A 和 B 中的最低值</button>        
+</div>
+<p id="result"></p>
+<script type="text/javascript">
+var tree = {
+    "id": 0,
+    "name": "root",
+    "left": {
+        "id": 1,
+        "name": "Simon",
+        "left": {
+            "id": 3,
+            "name": "Carl",
+            "left": {
+                "id": 7,
+                "name": "Lee",
+                "left": {
+                    "id": 11,
+                    "name": "Fate"
+                }
+            },
+            "right": {
+                "id": 8,
+                "name": "Annie",
+                "left": {
+                    "id": 12,
+                    "name": "Saber"
+                }
             }
- 
-    </script>
+        },
+        "right": {
+            "id": 4,
+            "name": "Tony",
+            "left": {
+                "id": 9,
+                "name": "Candy"
+            }
+        }
+    },
+    "right": {
+        "id": 2,
+        "name": "right",
+        "left": {
+            "id": 5,
+            "name": "Carl",
+        },
+        "right": {
+            "id": 6,
+            "name": "Carl",
+            "right": {
+                "id": 10,
+                "name": "Kai"
+            }        
+        }
+    }
+}
+
+
+
+   function aa(tt,name) {
+if(tt.name!=name){
+if(tt.name==name){
+    console.log(tt);
+     console.log(tt.id);
+       console.log(tt.name);
+    }
+ if(tt.left!=null||tt.right!=null){ 
+       
+for(var x in tt){
+var t=tt[x];
+
+ aa(t,name);
+ }   
+  }  
+ }else {
+   console.log(tt);
+     console.log(tt.id);
+       console.log(tt.name);
+} 
+} 
+
+// 假设id和name均不会重复，根据输入name找到对应的id
+function findIdByName(name) {
+aa(tree,name);
+}
+ findIdByName('Lee');
+
+// 假设id和name均不会重复，根据输入id找到对应的name
+ function bb(tt,id) {
+if(tt.id!=id){
+if(tt.id==id){
+    console.log(tt);
+     console.log(tt.id);
+       console.log(tt.name);
+   }
+ if(tt.left!=null||tt.right!=null){ 
+       
+for(var x in tt){
+var t=tt[x];
+
+ bb(t,id);
+ }   
+  }  
+ }else {
+   console.log(tt);
+     console.log(tt.id);
+       console.log(tt.name);
+} 
+} 
+function findNameById(id) {
+bb(tree,id);
+}
+findNameById(6);
+
+function a(obj) {
+   console.log(obj.name);
+}
+
+// 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+
+function getListWithDLR(tt,call) {
+if(tt!=null){
+a(tt);
+getListWithDLR(tt.left,call);
+getListWithDLR(tt.right,call);
+}
+}
+
+
+ getListWithDLR(tree);
+// 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+function getListWithLDR(tt,call) {
+if(tt!=null){
+
+getListWithDLR(tt.left,call);
+a(tt);
+getListWithDLR(tt.right,call);
+}
+}
+getListWithLDR(tree);
+// 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+function getListWithLRD(tt,call) {
+if(tt!=null){
+getListWithDLR(tt.left,call);
+getListWithDLR(tt.right,call);
+a(tt);
+}
+}
+getListWithLDR(tree);
+</script>
 </body>
 </html>
