@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+table{
+	border: 1px lightgray solid;
+	border-collapse:collapse;
+	}
+	th{
+border: 1px lightgray solid;
+	}
+	td{
+		border: 1px lightgray solid;
+	}
+	</style>
+
+</head>
+<body>
+
+<div id="region-radio-wrapper"></div>
+<div id="product-radio-wrapper"></div>
+<div id="table-wrapper">
+</div>
+<!-- <script type="text/javascript">
+let sourceData = [{
+    product: "手机",
+    region: "华东",
+    sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+}, {
+    product: "手机",
+    region: "华北",
+    sale: [80, 70, 90, 110, 130, 145, 150, 160, 170, 185, 190, 200]
+}, {
+    product: "手机",
+    region: "华南",
+    sale: [220, 200, 240, 250, 260, 270, 280, 295, 310, 335, 355, 380]
+}, {
+    product: "笔记本",
+    region: "华东",
+    sale: [50, 60, 80, 110, 30, 20, 70, 30, 420, 30, 20, 20]
+}, {
+    product: "笔记本",
+    region: "华北",
+    sale: [30, 35, 50, 70, 20, 15, 30, 50, 710, 130, 20, 20]
+}, {
+    product: "笔记本",
+    region: "华南",
+    sale: [80, 120, 130, 140, 70, 75, 120, 90, 550, 120, 110, 100]
+}, {
+    product: "智能音箱",
+    region: "华东",
+    sale: [10, 30, 4, 5, 6, 5, 4, 5, 6, 5, 5, 25]
+}, {
+    product: "智能音箱",
+    region: "华北",
+    sale: [15, 50, 15, 15, 12, 11, 11, 12, 12, 14, 12, 40]
+}, {
+    product: "智能音箱",
+    region: "华南",
+    sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+}]
+var region=document.querySelector('#region-radio-wrapper');
+	var product=document.querySelector('#product-radio-wrapper');	
+function CheckBox(check,option) {
+ //生成全选checkbox的html，给一个自定义属性表示为全选checkbox，比如checkbox-type="all"
+var checkAll=document.createElement('input');
+checkAll.setAttribute("type",'checkbox');
+var checkText=document.createTextNode('全选');
+ check.appendChild(checkText);
+checkAll.setAttribute("checkboxtype",'all');
+check.appendChild(checkAll);
+  //遍历参数对象 {
+     //   生成各个子选项checkbox的html，给一个自定义属性表示为子选项
+   // }
+    //容器innerHTML = 生成好的html集合
+  for (var i = 0; i<=option.length-1; i++) {
+var checkOption=document.createElement('input');
+checkOption.setAttribute("type",'checkbox');
+var checkOptionText=document.createTextNode(option[i].text);
+checkOption.setAttribute("value",option[i].text);
+check.appendChild(checkOption);
+check.appendChild(checkOptionText)
+  }
+   // 给容器做一个事件委托 = function() {
+   //      if 是checkbox
+   //          读取自定义属性
+   //          if 全选
+   //              做全选对应的逻辑
+   //          else
+   //              做子选项对应的逻辑
+   //  }
+
+ var co=check.querySelectorAll('input');
+ function setFalse(){
+ 	var tt=0;
+   	for(var ii=1;ii<=co.length-1;ii++){
+if(co[ii].checked){
+tt++;
+if(tt==1){
+var a=co[ii];
+}
+}
+if(tt==1){
+a.checked=true;
+}
+}
+        }
+
+check.onchange=function(e){
+	  
+	if(e.target==checkAll && e.target.checked==true){
+for(var i=1;i<=co.length-1;i++){
+co[i].checked=true;
+}
+   } 
+   else{ 
+   	if(e.target.checked=='true'){
+   		co[0].checked=false; 
+e.target.checked=false;
+
+ }else if(e.target.checked=='false'){
+co[0].checked=false;  
+e.target.checked=true;
+ }else{
+   	var t=0;
+   	for(var i=1;i<=co.length-1;i++){
+if(co[i].checked){
+t++;
+}if(t==0){setFalse();}
+ if(t==3){
+co[0].checked=true;
+}else{co[0].checked=false;
+}
+}
+}
+   	
+   }
+ 
+view(); 
+}
+
+}
+
+ function getarea() {
+  var rco=region.querySelectorAll('input');
+	var pco=product.querySelectorAll('input');
+	var v=[];
+	var m=[];
+	var n=[];
+	var a=[];
+	var b=[];
+for(var x=1;x<=rco.length-1;x++){
+	if(rco[x].checked){		 
+        a.push(rco[x]);  
+	}
+}  
+for(var y=1;y<=pco.length-1;y++){
+	if(pco[y].checked){		
+        b.push(pco[y]);     	
+	}
+}   
+for(var i=0;i<=sourceData.length-1;i++){
+for(var xx=0;xx<=a.length-1;xx++){
+ if(sourceData[i].region==(a[xx].value)){
+	m.push(sourceData[i]);	
+ }  
+}
+}        
+ for(var ii=0;ii<=sourceData.length-1;ii++){
+for(var yy=0;yy<=b.length-1;yy++){
+ if(sourceData[ii].product==(b[yy].value)){
+		n.push(sourceData[ii]);	
+ }  
+}
+}   
+if(m.length==0){
+v=n;
+}else if(n.length==0) {
+	v=m;
+}else if(m.length!=0&&n.length!=0){
+	 for(var iii=0;iii<=m.length-1;iii++){
+for(var z=0;z<=n.length-1;z++){ 	
+ if(m[iii].product==(n[z].product)&&m[iii].region==(n[z].region)){
+		v.push(m[iii]);	
+ }  
+}
+} 
+}   
+       return v;;
+  }	
+CheckBox(region, [{
+    value: 1,
+    text: "华东"
+}, {
+    value: 2,
+    text: "华北"
+},{
+    value: 3,
+    text: "华南"
+}]);
+CheckBox(product, [{
+    value: 1,
+    text: "手机"
+}, {
+    value: 2,
+    text: "笔记本"
+},{
+    value: 3,
+    text: "智能音箱"
+}]);
+
+var table=document.querySelector('#table-wrapper');
+
+
+
+function view( ) {
+	var month=['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+	 	 var q=getarea();
+	 	 table.innerHTML='';
+	 	 if(q==null){
+ q=option1[0].innerText;
+	 	 }
+	 	 //遍历表头 sale没有意义 
+var optionlist='';
+for(var i in q){
+	//判断数据中产品或者产地是不是全部相同 是的话说明是单选
+	if(q[0].region==q[i].region){
+ optionlist='region';
+	}else if(q[0].product==q[i].product){
+ optionlist='product';
+}else{
+	 optionlist='mul';
+}
+}
+ if( optionlist=='region'){
+var tr1=document.createElement('tr');
+var th1=document.createElement('th');
+var tou1=document.createTextNode('地区');
+th1.appendChild(tou1);
+tr1.appendChild(th1);
+table.appendChild(tr1);
+var th2=document.createElement('th');
+var tou2=document.createTextNode('商品');
+th2.appendChild(tou2);
+tr1.appendChild(th2);
+for(var m=0;m<=month.length-1;m++){
+	var th3=document.createElement('th');
+var tou3=document.createTextNode(month[m]);
+th3.appendChild(tou3);
+tr1.appendChild(th3);
+}
+var tr2=document.createElement('tr');
+var td1=document.createElement('td');
+var node1=document.createTextNode(q[0].region);
+var td2=document.createElement('td');
+var node2=document.createTextNode(q[0].product);
+td1.appendChild(node1);
+td2.appendChild(node2);
+td1.setAttribute('rowspan',"3");
+tr2.appendChild(td1);
+tr2.appendChild(td2);
+for(var s=0;s<=q[0].sale.length-1;s++){
+var nodem=document.createTextNode(q[0].sale[s]);
+var tdm=document.createElement('td');
+tdm.appendChild(nodem);
+tr2.appendChild(tdm);
+}
+table.appendChild(tr2);
+for(var i=1;i<=q.length-1;i++){ 
+	var tr3=document.createElement('tr');
+var td3=document.createElement('td');
+var node3=document.createTextNode(q[i].product);
+td3.appendChild(node3);
+tr3.appendChild(td3);
+for(var s=0;s<=q[i].sale.length-1;s++){
+var node4=document.createTextNode(q[i].sale[s]);
+var td4=document.createElement('td');
+td4.appendChild(node4);
+tr3.appendChild(td4);
+}
+table.appendChild(tr3);
+}
+ }else if(optionlist=='product'){
+var tr1=document.createElement('tr');
+var th1=document.createElement('th');
+var tou1=document.createTextNode('商品');
+th1.appendChild(tou1);
+tr1.appendChild(th1);
+table.appendChild(tr1);
+var th2=document.createElement('th');
+var tou2=document.createTextNode('地区');
+th2.appendChild(tou2);
+tr1.appendChild(th2);
+for(var m=0;m<=month.length-1;m++){
+	var th3=document.createElement('th');
+var tou3=document.createTextNode(month[m]);
+th3.appendChild(tou3);
+tr1.appendChild(th3);
+}
+var tr2=document.createElement('tr');
+var td1=document.createElement('td');
+var node1=document.createTextNode(q[0].product);
+var td2=document.createElement('td');
+var node2=document.createTextNode(q[0].region);
+td1.appendChild(node1);
+td2.appendChild(node2);
+td1.setAttribute('rowspan',"3");
+tr2.appendChild(td1);
+tr2.appendChild(td2);
+for(var s=0;s<=q[0].sale.length-1;s++){
+var nodem=document.createTextNode(q[0].sale[s]);
+var tdm=document.createElement('td');
+tdm.appendChild(nodem);
+tr2.appendChild(tdm);
+}
+table.appendChild(tr2);
+for(var i=1;i<=q.length-1;i++){ 
+	var tr3=document.createElement('tr');
+var td3=document.createElement('td');
+var node3=document.createTextNode(q[i].region);
+td3.appendChild(node3);
+tr3.appendChild(td3);
+for(var s=0;s<=q[i].sale.length-1;s++){
+var node4=document.createTextNode(q[i].sale[s]);
+var td4=document.createElement('td');
+td4.appendChild(node4);
+tr3.appendChild(td4);
+}
+table.appendChild(tr3);
+}
+ }else{if(q!=''){
+var tr1=document.createElement('tr');
+var th1=document.createElement('th');
+var tou1=document.createTextNode('地区');
+th1.appendChild(tou1);
+tr1.appendChild(th1);
+table.appendChild(tr1);
+var th2=document.createElement('th');
+var tou2=document.createTextNode('商品');
+th2.appendChild(tou2);
+tr1.appendChild(th2);
+for(var m=0;m<=month.length-1;m++){
+	var th3=document.createElement('th');
+var tou3=document.createTextNode(month[m]);
+th3.appendChild(tou3);
+tr1.appendChild(th3);
+}
+for(var i=0;i<=q.length-1;i++){ 
+	var tr3=document.createElement('tr');
+var td3=document.createElement('td');
+var node3=document.createTextNode(q[i].product);
+td3.appendChild(node3);
+tr3.appendChild(td3);
+var td5=document.createElement('td');
+var node5=document.createTextNode(q[i].region);
+td5.appendChild(node5);
+tr3.appendChild(td5);
+for(var s=0;s<=q[i].sale.length-1;s++){
+var node4=document.createTextNode(q[i].sale[s]);
+var td4=document.createElement('td');
+td4.appendChild(node4);
+tr3.appendChild(td4);
+}
+table.appendChild(tr3);
+}}
+ }}
+</script> -->
+<script type="text/javascript" src='app.js'></script>
+<script type="text/javascript" src='./js/checkbox.js'></script>
+<script type="text/javascript" src='./js/table.js'></script>
+</body>
+</html>
